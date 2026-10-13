@@ -115,24 +115,24 @@ const publications = [
     href: "https://scholar.google.com/citations?user=mfgGYcoAAAAJ&hl=en",
   },
   {
-    status: "Accepted",
+    status: "Presented",
     venue: "IEEE EMBC",
     year: "2026",
     title:
-      "Graphene Auricular Bioimpedance: Toward Continuous Blood Pressure Monitoring from the Temporal Artery",
+      "Graphene Auricular Bioimpedance: Toward Continuous Blood Pressure Monitoring from Temporal Artery",
     summary:
       "Auricular graphene tattoo bioimpedance for arterial waveform-based blood pressure monitoring.",
-    href: "https://scholar.google.com/citations?user=mfgGYcoAAAAJ&hl=en",
+    href: "https://cmsworkshops.com/EMBC2026/view_paper.php?PaperNum=4104&SessionID=1142",
   },
   {
-    status: "Accepted",
+    status: "Presented",
     venue: "IEEE EMBC",
     year: "2026",
     title:
       "Cross-Site Graphene Tattoo Bioimpedance for Calibration-Free Continuous Tracking of Arterial Stiffness Biomarkers",
     summary:
       "Cross-site waveform analysis for arterial stiffness tracking and improved generalization.",
-    href: "https://scholar.google.com/citations?user=mfgGYcoAAAAJ&hl=en",
+    href: "https://cmsworkshops.com/EMBC2026/view_paper.php?PaperNum=4145&SessionID=1142",
   },
   {
     status: "Accepted",
@@ -143,6 +143,43 @@ const publications = [
     summary:
       "Extending commercial smartwatches using ultrathin graphene interfaces for continuous ECG access.",
     href: "https://scholar.google.com/citations?user=mfgGYcoAAAAJ&hl=en",
+  },
+];
+
+const announcements = [
+  {
+    category: "Research support · Fall 2026",
+    title: "IALS Translational Graduate Student Assistantship",
+    body: "I was awarded a competitive IALS Translational Graduate Student Assistantship at UMass Amherst for my project, “Ear-Worn Graphene Bioimpedance for Continuous BP Monitoring.” This support will advance an ear-worn graphene sensing platform toward continuous, cuffless blood pressure monitoring in everyday settings.",
+    links: [{ label: "UMass Engineering announcement", href: "https://www.umass.edu/engineering/news/ials-assistantships-2026" }],
+  },
+  {
+    category: "Media · September 2026",
+    title: "Research featured by UMass Engineering",
+    body: "UMass Amherst’s Riccio College of Engineering featured my research in its article on the 2026 IALS assistantship recipients. The coverage highlights the project’s aim of translating graphene bioimpedance research into a wearable platform for monitoring blood pressure beyond occasional cuff measurements.",
+    links: [{ label: "Read the feature", href: "https://www.umass.edu/engineering/news/ials-assistantships-2026" }],
+  },
+  {
+    category: "Conference · July 2026",
+    title: "Two papers presented at IEEE EMBC 2026",
+    body: "I presented two papers at IEEE EMBC 2026 in Toronto, Canada, in the Cardiovascular Modeling II poster session on July 28. These studies explore graphene bioimpedance for continuous blood pressure monitoring and arterial stiffness tracking.",
+    papers: publications.filter((paper) => paper.venue === "IEEE EMBC"),
+    links: [{ label: "View the conference session", href: "https://cmsworkshops.com/EMBC2026/view_session.php?SessionID=1142&bare=1" }],
+  },
+  {
+    category: "Podcast · 2026",
+    title: "Discussing hydrogel bioelectronics on You Wear It... Well",
+    body: "I joined Jeff Hiserman on You Wear It... Well to discuss our hydrogel project and its role in my research on wearable bioelectronics. The conversation begins with “Where Sensing Gels – Part One.”",
+    links: [
+      { label: "Listen on Apple Podcasts", href: "https://podcasts.apple.com/be/podcast/where-sensing-gels-part-one/id1565149825?i=1000784399042" },
+      { label: "Podcast on Spotify", href: "https://open.spotify.com/show/4XW8bzZohyPidOJ4uytOtf" },
+    ],
+  },
+  {
+    category: "Recognition · 2026",
+    title: "University nomination for the Google PhD Fellowship",
+    body: "I was nominated by UMass Amherst for the Google PhD Fellowship as the university’s sole nominee from the College of Engineering. I am grateful for this recognition of my doctoral research and for the mentorship and institutional support behind the nomination.",
+    links: [],
   },
 ];
 
@@ -286,6 +323,9 @@ export default function GoogleFellowshipSite() {
             Pritom Chowdhury
           </a>
           <nav className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
+            <a href="#announcements" className="transition hover:text-slate-950">
+              News
+            </a>
             <a href="#featured" className="transition hover:text-slate-950">
               Research
             </a>
@@ -422,6 +462,39 @@ export default function GoogleFellowshipSite() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        <section id="announcements" aria-label="News and announcements" className="scroll-mt-24 border-y border-slate-200/80 bg-white/60">
+          <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
+            <SectionHeader eyebrow="Announcements" title="News & milestones" text="Recent conference presentations, research support, and conversations about my work." />
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {announcements.map((item) => (
+                <article key={item.title} className="min-w-0 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-emerald-700">{item.category}</p>
+                  <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-950">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-700">{item.body}</p>
+                  {item.papers && (
+                    <ul className="mt-4 list-disc space-y-3 pl-5 text-sm leading-6 text-slate-700">
+                      {item.papers.map((paper) => (
+                        <li key={paper.title}>
+                          <a href={paper.href} target="_blank" rel="noreferrer" className="underline decoration-emerald-300 underline-offset-4 hover:decoration-emerald-700">{paper.title}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {item.links.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3">
+                      {item.links.map((link) => (
+                        <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-800 underline underline-offset-4 hover:text-emerald-950">
+                          {link.label}<ArrowUpRight className="h-4 w-4 shrink-0" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
